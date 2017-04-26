@@ -1,0 +1,2 @@
+# SpringBootMogo
+Mongo Demo
