@@ -3,6 +3,7 @@ package com.macwy.mongo.controller;
 import com.macwy.mongo.domain.User;
 import com.macwy.mongo.repository.UserRepository;
 import com.macwy.mongo.service.UserService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,10 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "user")
 public class UserController {
+
+    private Logger logger = Logger.getLogger(UserController.class);
+
+    private  Logger userLogger = Logger.getLogger("userLogger");
 
     @Autowired
     private UserService userService;
@@ -64,6 +69,10 @@ public class UserController {
      */
     @RequestMapping(value = "/findUsersByTags")
     List<User> findUsersByTags(){
+        logger.info("进入");
+        logger.debug("info");
+        userLogger.debug("info");
+
         String[] tags =new String[1];
         tags[0]= "mongodb";
         return  userService.findUsersByTags(tags);

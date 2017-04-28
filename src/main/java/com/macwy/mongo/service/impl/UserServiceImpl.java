@@ -58,4 +58,15 @@ public class UserServiceImpl implements UserService {
         query.addCriteria(criteria);
         return  this.mongoTemplate.find(query,User.class);
     }
+
+
+    public  List<User> findByTitleOrBy(String title,String by){
+
+        Query query = new Query();
+        Criteria criteria = new Criteria();
+        criteria.andOperator(new Criteria("title").is(title),new Criteria("by").is(by));
+        query.addCriteria(criteria);
+        return this.mongoTemplate.find(query,User.class);
+
+    }
 }
